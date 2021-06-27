@@ -15,7 +15,7 @@ from datetime import datetime as dt
 
 st.set_page_config(layout="wide")
 
-st.title('DataCracy ATOM Tiến Độ Lớp Học')
+st.title("What's Trending Today On Youtube?")
 #with open('./Documents/Github/flying-dog-beers/env_variable.json','r') as j:
     #json_data = json.load(j)
 
