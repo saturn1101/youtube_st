@@ -149,7 +149,7 @@ if __name__ == "__main__":
 
     st.markdown('## Visualization')
     # Create pairplot for category
-    chart1 = sns.histplot(data=country_df, x='Category_ID')
+    chart1 = sns.histplot(data=country_df['categoryId'], x='Category ID')
     st.pyplot(chart1)
 
     # st.markdown('## Lịch sử Review Assignment')
