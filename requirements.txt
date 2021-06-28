@@ -7,7 +7,6 @@ datetime
 matplotlib
 seaborn
 requests
-sys
 time
 os
 argparse
