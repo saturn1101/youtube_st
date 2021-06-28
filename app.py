@@ -147,13 +147,18 @@ if __name__ == "__main__":
     st.markdown("## Today's Data")
     st.write(country_df)
 
+    st.markdown('## Visualization')
+    # Create pairplot
+    chart1 = sns.pairplot(country_df)
+    st.pyplot(chart1)
+
     # st.markdown('## Lịch sử Review Assignment')
     # st.write(review_df[dis_cols2])
 
     # st.markdown('## Lịch sử Discussion')
     # st.write(discuss_df[dis_cols3])
 
-    # st.markdown('## Visualization')
+    
     # st.markdown('### Phân Bổ Thời Gian Nộp Assignment')
     # # Create a distribution chart for submission
     # chart1 = sns.catplot(x="weekday", kind="count", hue="channel_name", data=total_submit[['channel_name', 'weekday']])
