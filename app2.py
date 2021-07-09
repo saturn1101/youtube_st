@@ -27,7 +27,7 @@ from google.cloud import bigquery_storage
 credentials, your_project_id = google.auth.default(
     scopes=["https://www.googleapis.com/auth/cloud-platform"]
 )
-
+print(credentials)
 # Make clients
 bqclient = bigquery.Client(credentials=credentials, project=your_project_id,)
 bqstorageclient = bigquery_storage.BigQueryReadClient(credentials=credentials)
