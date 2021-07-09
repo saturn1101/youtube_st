@@ -12,3 +12,4 @@ google-auth
 google-cloud
 google-cloud-bigquery
 google-cloud-storage
+google-cloud-bigquery-storage
