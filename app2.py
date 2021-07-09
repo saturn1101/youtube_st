@@ -46,8 +46,6 @@ dataframe = (
     .to_dataframe(bqstorage_client=bqstorageclient)
 )
 
-
-
 st.set_page_config(layout="wide")
 
 st.title("What's Trending On Youtube Today?")
