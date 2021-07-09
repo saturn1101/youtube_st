@@ -9,4 +9,4 @@ seaborn
 requests
 
 google-auth
-Google-cloud
+google.cloud
