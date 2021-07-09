@@ -17,6 +17,11 @@ from datetime import datetime as dt
 from google.cloud import bigquery
 from google.cloud import bigquery_storage
 
+import tempfile
+with tempfile.NamedTemporaryFile(mode='w', delete=False) as fp:
+    fp.write(st.secrets['GOOGLE_APPLICATION_CREDENTIALS'])
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = fp.name
+
 # Authentication
 # Setting the environment variable
 #export GOOGLE_APPLICATION_CREDENTIALS="/Users/andie/Documents/GitHub/youtube_st/trending-youtube-318617-2aa80e6e72c6.json"
