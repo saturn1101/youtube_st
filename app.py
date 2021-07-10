@@ -43,7 +43,6 @@ st.set_page_config(layout="wide")
 query_string = """
 SELECT *
 FROM `trending-youtube-318617.youtube.vn_youtube`
-LIMIT 20000
 """
 
 df = (
