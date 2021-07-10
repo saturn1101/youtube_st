@@ -43,6 +43,7 @@ st.set_page_config(layout="wide")
 query_string = """
 SELECT *
 FROM `trending-youtube-318617.youtube.vn_youtube`
+LIMIT 100000
 """
 
 df = (
@@ -79,7 +80,7 @@ end_date = dt.now().strftime("%y.%d.%m")
 # Mapping categoryId to Category
 id_to_category = {}
 
-with open('/Users/andie/Documents/GitHub/youtube_st/videoCategories.json', 'r') as f:
+with open('videoCategories.json', 'r') as f:
     data = json.load(f)
     for category in data['items']:
         id_to_category[category['id']] = category['snippet']['title']
