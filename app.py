@@ -43,7 +43,7 @@ st.set_page_config(layout="wide")
 query_string = """
 SELECT *
 FROM `trending-youtube-318617.youtube.vn_youtube`
-LIMIT 50000
+LIMIT 20000
 """
 
 df = (
@@ -136,7 +136,7 @@ st.title("What's Trending On Youtube Vietnam?")
 
 if __name__ == "__main__":
     
-    st.markdown("### *Bắt Trend Không Cần Sức*")
+    st.markdown("### *Bắt Trend Không Tốn Sức*")
     st.markdown("## Top 10 Trending Tính Theo Số Views Hôm Nay")
     st.write(top_video)
     
