@@ -44,7 +44,7 @@ query_string = """
 SELECT *
 FROM `trending-youtube-318617.youtube.vn_youtube`
 ORDER BY timestamp DESC
-LIMIT 20000
+LIMIT 10000
 """
 
 df = (
@@ -129,7 +129,32 @@ dance = dance_df[['video_id', 'title', 'timestamp', 'p_view']]
 #dance_df['date'] = pd.to_datetime(df['timestamp'],format='%y.%d.%m, %H:%M').dt.date()
 # dance_df = dance_df[df['trending_date'] == '21.09.07']
 
+# Total videos
+query_string2 = """
+SELECT COUNT(*)
+FROM `trending-youtube-318617.youtube.vn_youtube`
+"""
+
+df2 = (
+    bqclient.query(query_string2)
+    .result()
+    .to_dataframe(bqstorage_client=bqstorageclient)
+)
+
+# Total videos
+query_string3 = """
+SELECT COUNT(DISTINCT video_id)
+FROM `trending-youtube-318617.youtube.vn_youtube`
+"""
+
+df3 = (
+    bqclient.query(query_string3)
+    .result()
+    .to_dataframe(bqstorage_client=bqstorageclient)
+)
+
 st.title("What's Trending On Youtube Vietnam?")
+
 
 # Get date
 # st.sidebar.markdown('## Date Range')
@@ -154,14 +179,13 @@ if __name__ == "__main__":
     chart2 = sns.barplot(x='video_count', y='channelTitle', data=channel_df)
     col2.pyplot(chart2.figure)
 
-    col3, col4 = st.beta_columns(2)
-    col3.header('Most Viewed Trending Videos')
+    st.markdown('## Most Viewed Trending Videos')
     # Create pairplot for category
     #st.write(view_df)
     chart3 = sns.barplot(x="view_count", y="title", data=view_df)
     st.pyplot(chart3.figure)
 
-    col4.header('Most Liked Trending Videos')
+    st.markdown('## Most Liked Trending Videos')
     chart4 = sns.barplot(x='likes', y='title', data=like_df)
     st.pyplot(chart4.figure)
 
@@ -201,7 +225,7 @@ if __name__ == "__main__":
     st.sidebar.markdown(f'''<div class="card text-info bg-info mb-3" style="width: 18rem">
     <div class="card-body">
     <h5 class="card-title">Tổng Số Giá Trị Thu Thập</h5>
-    <p class="card-text">{cnt_values:.0f}</p>
+    <p class="card-text">{df2.iloc[0][0]:.0f}</p>
     </div>
     </div>''', unsafe_allow_html=True)
 
@@ -209,7 +233,7 @@ if __name__ == "__main__":
     st.sidebar.markdown(f'''<div class="card text-info bg-info mb-3" style="width: 18rem">
     <div class="card-body">
     <h5 class="card-title">Tổng Số Video</h5>
-    <p class="card-text">{cnt_unique:02d}</p>
+    <p class="card-text">{df3.iloc[0][0]:02d}</p>
     </div>
     </div>''', unsafe_allow_html=True)
 
@@ -224,7 +248,7 @@ if __name__ == "__main__":
     # End Time
     st.sidebar.markdown(f'''<div class="card text-info bg-info mb-3" style="width: 18rem">
     <div class="card-body">
-    <h5 class="card-title">Ngày Bắt Đầu Thu Thập</h5>
+    <h5 class="card-title">Ngày Dữ Liệu Mới Nhất</h5>
     <p class="card-text">{end_date}</p>
     </div>
     </div>''', unsafe_allow_html=True)
