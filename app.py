@@ -43,6 +43,7 @@ st.set_page_config(layout="wide")
 query_string = """
 SELECT *
 FROM `trending-youtube-318617.youtube.vn_youtube`
+ORDER BY timestamp DESC
 LIMIT 20000
 """
 
@@ -91,8 +92,8 @@ df.insert(6, 'category', df.categoryId.map(id_to_category))
 #print(df['timestamp'][5])
 #today = dt.date.today()
 #vid_views = df[df['trending_date'] >= today - dt.timedelta(days=1)]
-vid_views = df[df['trending_date'] == '21.09.07']
-vid_views = vid_views.groupby(['video_id', 'title', 'category', 'channelTitle']).agg({'view_count': 'max'}).reset_index()
+#vid_views = df[df['trending_date'] == '21.13.07']
+vid_views = df.groupby(['video_id', 'title', 'category', 'channelTitle']).agg({'view_count': 'max'}).reset_index()
 vid_views['rank'] = vid_views['view_count'].rank(method='max', ascending=False)
 top_video = vid_views[vid_views['rank'] <= 10].sort_values(by=['view_count'], ascending=False)
 
